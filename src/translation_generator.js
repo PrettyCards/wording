@@ -18,7 +18,7 @@ function getObjectsFor(sheetObj) {
         if (!artifact) {
             return "INVALID_DATA";
         }
-        objects[0].key = objects[0].key + "-" + artifact;
+        objects[0].key = objects[0].key + "-" + artifact.id;
     } else if (objects[0].key == "soul" || objects[0].key == "kw") {
         objects.push({key: `${objects[0].key}-${additionalData.toLowerCase()}`, value: additionalData});
         objects[0].key = objects[1].key + "-desc";

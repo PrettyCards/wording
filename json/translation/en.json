@@ -257,7 +257,10 @@
         "ifEqual": "{{KW:MAGIC}} and {{KW:TURN_START}}: Add a {{CARD:398|1}} to your hand. {{KW:TURN_END}}: Remove all {{CARD:398|99}} from your hand.",
         "value": "{{KW:MAGIC}} and {{KW:TURN_START}}: Add a {{CARD:398|1}} to your hand. {{KW:TURN_END}}: {{KW:BURN}} all {{CARD:398|2}} in your hand."
     },
-    "artifact-[object Object]": "{{KW:TURN_START}}: Heal 3 {{HP}} to a random damaged ally monster.",
+    "artifact-25": {
+        "ifEqual": "{{kW:TURN_START}}: Add a {{CARD:537|1}} to your hand. {{KW:TURN_END}}: Remove all {{CARD:537|2}} from your hand.",
+        "value": "{{KW:TURN_START}}: Add a {{CARD:537|1}} to your hand. {{KW:TURN_END}}: {{KW:BURN}} all {{CARD:537|2}} in your hand."
+    },
     "card-423": {
         "ifEqual": "{{KW:MAGIC}}: Choose between {{CARD:10|1}}, {{CARD:9|1}} or {{CARD:31|1}}. Add the chosen card to your hand.",
         "value": "{{KW:MAGIC}}: Look at {{CARD:10|1}}, {{CARD:9|1}}, and {{CARD:31|1}} and choose one. Add it to your hand."
@@ -486,6 +489,10 @@
         "ifEqual": "{{KW:MAGIC}}: Draw a non-DT highest rarity card from your deck (except {{CARD:252|1}}).",
         "value": "{{KW:MAGIC}}: Draw a non-{{RARITY:DETERMINATION}} highest rarity card from your deck (except {{CARD:252|1}})."
     },
+    "artifact-36": {
+        "ifEqual": "At the start of the game, burn an ally {{CARD:688|1}} wherever it is. Draw a card if it's in your hand. Transform into the {{ARTIFACT:43}} artifact. Otherwise, add {{CARD:535|1}} to your hand and deck.",
+        "value": "At the start of the game, {{KW:BURN}} an ally {{CARD:688|1}} wherever it is. Draw a card if it's in your hand. Transform into the {{ARTIFACT:43}} artifact. If you have no {{CARD:688|1}}, add {{CARD:535|1}} to your hand and deck instead."
+    },
     "card-551": {
         "ifEqual": "Kill an unparalyzed enemy monster and all copies of it on the enemy board. Burn all copies of it in their hand and deck.",
         "value": "Kill an unparalyzed enemy monster and all copies of it on the enemy board. {{KW:BURN}} all copies of it in your opponent's hand and deck."
@@ -562,6 +569,10 @@
         "ifEqual": "Other monsters are forced to attack this monster.",
         "value": "Enemy monsters must kill monsters with this before they can attack the player or other ally monsters."
     },
+    "artifact-3": {
+        "ifEqual": "At the start of the game deal 5 {{DMG}} to your opponent and reduce their max {{HP}} by 5.",
+        "value": "At the start of the game, reduce the opponent's {{HP}} by 5."
+    },
     "card-274": {
         "ifEqual": "{{KW:NEED}}: Your deck has no {{RARITY:RARE}} or {{RARITY:EPIC}} cards (except {{KW:GENERATED}} cards). {{KW:MAGIC}}: Choose a card in your hand. Send it to your deck with -4 {{COST}}.",
         "value": "{{KW:NEED}}: Your deck has no {{RARITY:RARE}} or {{RARITY:EPIC}} cards (except {{KW:GENERATED}} cards). {{KW:MAGIC}}: Send a card in your hand to your deck with -4 {{COST}}."
@@ -582,6 +593,14 @@
         "ifEqual": "Heal 3 {{HP}}. If this targeted you, draw a card. If this targeted a monster, remove negative effects from it.",
         "value": "Heal 3 {{HP}}. If this targeted a player, draw a card. If this targeted a monster, remove negative effects from it."
     },
+    "artifact-11": {
+        "ifEqual": "Starts with 5 counters. Whenever you would overdraw a card, spend 1 counter to prevent this.",
+        "value": "Counter starts at 5. Whenever you would overdraw a card, spend 1 counter to prevent this."
+    },
+    "artifact-45": {
+        "ifEqual": "Whenever an ally {{CARD:715|1}} is played, increase its counter by 1. When this is disabled, remove all counters from this and add a random {{TRIBE:CHAOS_WEAPON|2}} to your deck for every counter removed.",
+        "value": "Counter starts at 0. Whenever you play a {{CARD:715|1}}, increase the counter by 1. When this is disabled, remove all counters from this and add a random {{TRIBE:CHAOS_WEAPON|2}} to your deck for every counter removed."
+    },
     "card-491": {
         "ifEqual": "{{KW:TAUNT}}. {{KW:DUST}}: Add a copy of a random other ally {{TRIBE:MOLD|1}} to your hand.",
         "value": "{{KW:TAUNT}}. {{KW:DUST}}: Add a copy of a random other ally {{TRIBE:MOLD|1}} to your hand (except {{CARD:491|1}})."
@@ -598,9 +617,29 @@
         "ifEqual": "{{KW:TURN_END}}: If you have a {{RARITY:TOKEN}} card with a base {{COST}} of 3+ {{GOLD}} in your hand, give 2 random non-{{RARITY:TOKEN}} cards in your hand -1 {{COST}}.",
         "value": "{{KW:TURN_END}}: If you have a {{RARITY:TOKEN}} with a base cost of 3+ {{GOLD}} in your hand, give 2 random non-{{RARITY:TOKEN}} cards in your hand -1 {{COST}}."
     },
+    "artifact-1": {
+        "ifEqual": "Start the game with 35/35 {{HP}}.",
+        "value": "At the start of the game, gain +5 {{HP}}."
+    },
+    "artifact-28": {
+        "ifEqual": "When you summon a monster with a tribe you haven't summoned this game, add a {{CARD:270|1}} to your hand.",
+        "value": "Whenever you summon a monster with a tribe you haven't summoned this game (except All), add a {{CARD:270|1}} to your hand."
+    },
     "card-390": {
         "ifEqual": "{{KW:MAGIC}}: {{KW:SILENCE}} all ally monsters.",
         "value": "{{KW:MAGIC}}: {{KW:SILENCE}} all other ally monsters."
+    },
+    "artifact-23": {
+        "ifEqual": "{{KW:TURN_START}}: Give +{{HP:1}} to a random ally monster.",
+        "value": "{{KW:TURN_START}}: Give a random ally monster +1 {{HP}}."
+    },
+    "artifact-22": {
+        "ifEqual": "{{KW:TURN_START}}: Give +{{ATK:1}} to a random ally monster.",
+        "value": "{{KW:TURN_START}}: Give a random ally monster +1 {{ATK}}."
+    },
+    "artifact-21": {
+        "ifEqual": "{{KW:TURN_START}}: Restore {{HP:3}} to a random damaged ally monster.",
+        "value": "{{KW:TURN_START}}: Heal 3 {{HP}} to a random damaged ally monster."
     },
     "card-name-123": {
         "ifEqual": "{{PLURAL:$1|Onion San|Onion San}}",
