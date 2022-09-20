@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         PrettyCards Shops (local)
+// @name         PrettyCards Wording (local)
 // @namespace    http://tampermonkey.net/
 // @version      local
-// @description  PrettyCards Shops
+// @description  PrettyCards Wording
 // @author       CMD_God
 // @match        https://*.undercards.net/*
 // @exclude      https://*.undercards.net/*/*

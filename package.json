@@ -28,6 +28,7 @@
         "webpack-userscript": "^2.5.1"
     },
     "dependencies": {
+        "inquirer": "^9.1.2",
         "konva": "^8.3.12"
     }
 }
