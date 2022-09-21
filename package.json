@@ -1,6 +1,6 @@
 {
     "name": "prettycards_wording",
-    "version": "1.0.0",
+    "version": "1.0.0b1",
     "description": "A while ago, Onutrem asked for wording corrections to be added into the game through a Google Sheet. The community filled it through the brim, but Onu never added them. And I got sick of waiting.",
     "main": "prettycards_shops.user.js",
     "homepage": "https://github.com/PrettyCardsProjects/shops",
