@@ -6,10 +6,11 @@ function getObjectsFor(sheetObj) {
             value: sheetObj["Correct Wording (Translated)"]
         }
     ];
-    var additionalData = sheetObj["Card\/Artifact Name"];
+    var additionalData = sheetObj["Card\/Artifact Name"].trim();
     if (objects[0].key == "card" || objects[0].key == "card-name") {
         var card = window.getCardWithName(additionalData);
         if (!card) {
+            //console.log('|' + sheetObj["Card\/Artifact Name"] + '|', '|' + additionalData + '|');
             return "INVALID_DATA";
         }
         objects[0].key = objects[0].key + "-" + card.id;
