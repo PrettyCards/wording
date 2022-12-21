@@ -1,5 +1,9 @@
 
 function getObjectsFor(sheetObj) {
+    if (!sheetObj["Type\/Translation Key"]) {
+        console.log("ERR: No \"Type/Translation Key\" for ", sheetObj);
+        return [];
+    } 
     var objects = [
         {
             key: sheetObj["Type\/Translation Key"].toLowerCase(),
