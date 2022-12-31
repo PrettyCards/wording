@@ -32,6 +32,10 @@ function getObjectsFor(sheetObj) {
 }
 
 function generateTranslations() {
+    if (window.prettycards.artifactDisplay.artifacts.length <= 0) {
+        console.log("LOG IN FIRST!!!");
+        return;
+    }
     console.log("Please wait . . .");
     window.$.getJSON("https://undercards.net/translation/en.json", {}, function(translationFile) {
         console.log("UC translation file fetched . . .");
