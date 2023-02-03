@@ -35,6 +35,11 @@ if (us_loaded) {
     
 }
 
+function isApril() {
+    return true;
+    return prettycards.utility.getSeasonMonth() == 3;
+}
+
 //console.log(settings);
 
-export {us_loaded, settings, plugin, addSetting}
+export {us_loaded, settings, plugin, addSetting, isApril}

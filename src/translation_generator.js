@@ -31,7 +31,7 @@ function getObjectsFor(sheetObj) {
     return objects;
 }
 
-function generateTranslations() {
+function generateTranslations(sheet = "Regular_Fixes", addIfs = true) {
     if (window.prettycards.artifactDisplay.artifacts.length <= 0) {
         console.log("LOG IN FIRST!!!");
         return;
@@ -39,7 +39,7 @@ function generateTranslations() {
     console.log("Please wait . . .");
     window.$.getJSON("https://undercards.net/translation/en.json", {}, function(translationFile) {
         console.log("UC translation file fetched . . .");
-        window.$.getJSON("https://sheetdb.io/api/v1/pos34noy6mzql", {}, function(sheets) {
+        window.$.getJSON("https://sheetdb.io/api/v1/pos34noy6mzql?sheet=" + sheet, {}, function(sheets) {
             console.log("Translation sheet fetched . . .");
             var newFile = {};
             sheets.forEach(sheetObj => {
@@ -50,12 +50,12 @@ function generateTranslations() {
                 }
                 objs.forEach(obj => {
                     var org = translationFile[obj.key];
-                    if (org) {
+                    if (org && addIfs) {
                         if (org == obj.value) {
-                            return;
+                            return; // Acts as a break if this was a normal loop.
                         }
                         newFile[obj.key] = {ifEqual : org, value: obj.value};
-                        return;
+                        return; // Acts as a break if this was a normal loop.
                     }
                     newFile[obj.key] = obj.value;
                 })
@@ -67,6 +67,54 @@ function generateTranslations() {
     })
 }
 
+function generateAprilFoolsSheetCorrection() {
+    if (window.prettycards.artifactDisplay.artifacts.length <= 0) {
+        console.log("LOG IN FIRST!!!");
+        return;
+    }
+    console.log("Please wait . . .");
+    window.$.getJSON("https://undercards.net/translation/en.json", {}, function(translationFile) {
+        console.log("UC translation file fetched . . .");
+        window.$.getJSON("https://sheetdb.io/api/v1/pos34noy6mzql?sheet=April Fools", {}, function(sheets) {
+            console.log("Translation sheet fetched . . .");
+            var newRows = [];
+            sheets.forEach(sheetObj => {
+                var key = sheetObj["Type\/Translation Key"].toLowerCase();
+                var author = sheetObj["Suggester"];
+                var additionalName = sheetObj["Card\/Artifact Name"];
+                var value = sheetObj["Changed Version"];
+                if (!key.startsWith("card")) {
+                    return;
+                }
+                if (author == "TEMPLATE") {
+                    var card = getCardWithName(additionalName);
+                    if (!card) {
+                        console.log("CARD NOT FOUND WITH NAME", additionalName);
+                        return;
+                    }
+                    value = translationFile[key + "-" + card.id];
+                    console.log("NEW VALUE", value);
+                }
+                newRows.push([key, additionalName, author, value]);
+            })
+            console.log(newRows);
+
+            var rows = "";
+            newRows.forEach((row) => {
+                rows += "<tr>";
+                row.forEach((cell) => {
+                    rows += `<td>${cell}</td>`;
+                })
+                rows += "</tr>";
+            })
+
+            var table = window.$(`<table><tbody>${rows}</tbody></table>`);
+            $(".mainContent").append(table);
+        })
+    })
+}
+
 window.prettycardswording_generateTranslations = generateTranslations;
+window.prettycardswording_generateAprilFoolsSheetCorrection = generateAprilFoolsSheetCorrection;
 
 export {generateTranslations};
