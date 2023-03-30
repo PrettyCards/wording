@@ -73,7 +73,7 @@ function generateAprilFoolsSheetCorrection() {
         return;
     }
     console.log("Please wait . . .");
-    window.$.getJSON("https://undercards.net/translation/en.json", {}, function(translationFile) {
+    window.$.getJSON("/translation/en.json", {}, function(translationFile) {
         console.log("UC translation file fetched . . .");
         window.$.getJSON("https://sheetdb.io/api/v1/pos34noy6mzql?sheet=April Fools", {}, function(sheets) {
             console.log("Translation sheet fetched . . .");
