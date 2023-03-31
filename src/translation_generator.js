@@ -14,10 +14,16 @@ function getObjectsFor(sheetObj) {
     if (objects[0].key == "card" || objects[0].key == "card-name") {
         var card = window.getCardWithName(additionalData);
         if (!card) {
-            //console.log('|' + sheetObj["Card\/Artifact Name"] + '|', '|' + additionalData + '|');
             return "INVALID_DATA";
         }
         objects[0].key = objects[0].key + "-" + card.id;
+    } else if (objects[0].key == "card-cyan" || objects[0].key == "card-red" || objects[0].key == "card-both") {
+        var card = window.getCardWithName(additionalData);
+        if (!card) {
+            return "INVALID_DATA";
+        }
+        var bits = objects[0].key.split("-");
+        objects[0].key = `${bits[0]}-${card.id}-${bits[1]}`;
     } else if (objects[0].key == "artifact" || objects[0].key == "artifact-name") {
         var artifact = window.prettycards.artifactDisplay.GetArtifactByName(additionalData);
         if (!artifact) {
@@ -37,7 +43,7 @@ function generateTranslations(sheet = "Regular_Fixes", addIfs = true) {
         return;
     }
     console.log("Please wait . . .");
-    window.$.getJSON("https://undercards.net/translation/en.json", {}, function(translationFile) {
+    window.$.getJSON("/translation/en.json", {}, function(translationFile) {
         console.log("UC translation file fetched . . .");
         window.$.getJSON("https://sheetdb.io/api/v1/pos34noy6mzql?sheet=" + sheet, {}, function(sheets) {
             console.log("Translation sheet fetched . . .");
