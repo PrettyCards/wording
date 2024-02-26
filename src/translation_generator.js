@@ -73,6 +73,43 @@ function generateTranslations(sheet = "Regular_Fixes", addIfs = true) {
     })
 }
 
+function generateOnuTranslations(sheet = "Regular_Fixes", addIfs = true) {
+    if (window.prettycards.artifactDisplay.artifacts.length <= 0) {
+        console.log("LOG IN FIRST!!!");
+        return;
+    }
+    console.log("Please wait . . .");
+    window.$.getJSON("/translation/en.json", {}, function(translationFile) {
+        console.log("UC translation file fetched . . .");
+        window.$.getJSON("https://sheetdb.io/api/v1/pos34noy6mzql?sheet=" + sheet, {}, function(sheets) {
+            console.log("Translation sheet fetched . . .");
+            var newFile = []; // SQL Command Array
+            sheets.forEach(sheetObj => {
+                var objs = getObjectsFor(sheetObj);
+                if (objs == "INVALID_DATA") {
+                    console.log("Unprocessable data: ", sheetObj);
+                    return;
+                }
+                objs.forEach(obj => {
+                    var org = translationFile[obj.key];
+                    obj.value = obj.value.replaceAll("'", "''");
+                    if (org) {
+                        if (org == obj.value) {
+                            return; // Acts as a break if this was a normal loop. Prevents writing things that are already like that.
+                        }
+                        newFile.push(`UPDATE TranslateString SET stringReference = '${obj.value}' WHERE stringKey = '${obj.key}';`);
+                        return; // Acts as a break if this was a normal loop.
+                    }
+                    newFile.push(`INSERT INTO TranslateString (stringKey, stringReference) VALUES ('${obj.key}', '${obj.value}');`);
+                })
+            })
+            console.log(newFile);
+            var save = newFile.join("\n");
+            window.prettycards.utility.downloadFile(save, "en.sql", "text/plain");
+        })
+    })
+}
+
 function generateAprilFoolsSheetCorrection() {
     if (window.prettycards.artifactDisplay.artifacts.length <= 0) {
         console.log("LOG IN FIRST!!!");
@@ -122,5 +159,6 @@ function generateAprilFoolsSheetCorrection() {
 
 window.prettycardswording_generateTranslations = generateTranslations;
 window.prettycardswording_generateAprilFoolsSheetCorrection = generateAprilFoolsSheetCorrection;
+window.prettycardswording_generateOnuTranslations = generateOnuTranslations;
 
 export {generateTranslations};
